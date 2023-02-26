@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flask Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>My Variable: <span id="message">{{message}}</span></h1>
+    <script>
+      $(document).ready(function() {
+        setInterval(function() {
+          $.getJSON('/update', function(data) {
+            $('#message').text(data);
+          });
+        }, 100);
+      });
+    </script>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <h3 class="mt-5">Live Streaming</h3>
+          <h3 class="mt-5">{{message}}</h3>
+          <img src="{{ url_for('video_feed') }}" width="100%">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
